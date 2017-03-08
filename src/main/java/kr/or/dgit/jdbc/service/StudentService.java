@@ -70,7 +70,7 @@ public class StudentService implements StudentDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return lists;
 	}
 
 	private Student getStudent(ResultSet rs) throws SQLException{
