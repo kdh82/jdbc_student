@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 	private static final ConnectionFactory instance = new ConnectionFactory();
 	
-	public static Connection getConnection(){
+	public static Connection getinstance(){
 		return instance.createConnection();
 		
 	}

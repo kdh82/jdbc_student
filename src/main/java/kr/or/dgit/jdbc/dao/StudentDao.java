@@ -6,7 +6,7 @@ import kr.or.dgit.jdbc.dto.Student;
 
 public interface StudentDao {
 	Student fiindStudentById(int studId);
-	void insertStudent(Student student);
+	int insertStudent(Student student);
 	void deleteStudent(int studId);
 	List<Student> findAllStudents();
 }

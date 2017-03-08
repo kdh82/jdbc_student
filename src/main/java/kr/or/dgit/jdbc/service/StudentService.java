@@ -9,6 +9,7 @@ import java.util.List;
 import kr.or.dgit.jdbc.dao.StudentDao;
 import kr.or.dgit.jdbc.dto.Student;
 import kr.or.dgit.jdbc.util.ConnectionFactory;
+import kr.or.dgit.jdbc.util.JdbcUtil;
 
 public class StudentService implements StudentDao {
 	private static final StudentService Instance = new StudentService();
@@ -27,19 +28,24 @@ public class StudentService implements StudentDao {
 	}
 
 	@Override
-	public void insertStudent(Student student) {
-		Connection connection = ConnectionFactory.get();
-		PreparedStatement pstmt;
+	public int insertStudent(Student student) {
+		Connection connection = ConnectionFactory.getinstance();
+		PreparedStatement pstmt = null;
 		String sql = "insert into student values(?,?,?,?)";
+		int res = -1;
 		try {
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, student.getStudId());
 			pstmt.setString(2, student.getName());
 			pstmt.setString(3, student.getEmail());
 			pstmt.setTimestamp(4, new Timestamp(student.getDob().getTime()));
+			res = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			JdbcUtil.close(pstmt);
 		}
+		return res;
 	}
 
 	@Override

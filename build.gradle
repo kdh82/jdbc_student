@@ -3,7 +3,11 @@ apply plugin: 'eclipse'
 apply plugin: 'application'
 
 apply plugin: 'java-library'
+sourceCompatibility = 1.8 //컴파일 할때 적용할 jdk버전을 지정
 
+tasks.withType(JavaCompile){
+	options.encoding = 'UTF-8'
+}									// UTF-8로 지정	
 repositories {
     jcenter()
 }
