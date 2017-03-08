@@ -16,4 +16,26 @@ dependencies {
 	// https://mvnrepository.com/artifact/junit/junit
 	testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+version = 1.0
+mainClassName = 'kr.or.dgit_gradle_project.StudentUI'
+jar {
+	baseName = 'GradleTest'
+	appendix = 'bin'
+	manifest{
+		attributes 'Title':baseName, 'Version': version, 'Main-Class': mainClassName
+	}
+	//archiveName 'StudentManagement.jar' // baseName, appendix속성이 무시
+	dependsOn configurations.runtime // 실행 가능한 jar 파일 생성
+}
 
+task myJavadocs(type: Javadoc){
+	source = sourceSets.main.allJava
+}
+
+uploadArchives{
+	repositories{
+		flatDir{
+			dirs 'repos'
+		}
+	}
+}
