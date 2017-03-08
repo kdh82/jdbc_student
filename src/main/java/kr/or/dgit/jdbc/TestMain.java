@@ -19,6 +19,7 @@ public class TestMain {
 		student.setName("이준욱");
 		student.setEmail("ijw@test.co.kr");
 		student.setDob(new Date());
+		
 		service.insertStudent(student);
 	}
 
